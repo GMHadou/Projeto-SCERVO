@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disaster Data Portal</title>
+</head>
+<body>
+    <h1>Disaster Data Portal</h1>
+
+    <!-- Chart Section -->
+    <div>
+        <h2>Destruction Overview</h2>
+        <img src="{{ url_for('static', filename='chart.png') }}" alt="Total Destruction by Date">
+    </div>
+
+    <!-- Form Section -->
+    <div>
+        <h2>Desabafe Aqui</h2>
+        <form method="post">
+            <label for="date">Date:</label><br>
+            <input type="date" id="date" name="date" required><br><br>
+
+            <label for="cause">Cause of Tragedy:</label><br>
+            <input type="text" id="cause" name="cause" required><br><br>
+
+            <label for="comment">Your Comments:</label><br>
+            <textarea id="comment" name="comment" rows="4" required></textarea><br><br>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <!-- Comments Section -->
+    <div>
+        <h2>User Comments</h2>
+        {% for comment in comments %}
+            <p><strong>{{ comment.date }}</strong>: {{ comment.cause }}</p>
+            <p>{{ comment.comment }}</p>
+            <hr>
+        {% endfor %}
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>Powered by:
+            <a href="https://tempo.inmet.gov.br" target="_blank">tempo.inmet.gov.br</a> and
+            <a href="https://s2id.mi.gov.br/paginas/index.xhtml" target="_blank">s2id.mi.gov.br</a>
+        </p>
+    </footer>
+</body>
+</html>
